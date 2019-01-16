@@ -1,0 +1,17 @@
+---
+- name: Generate mapping
+  hosts: localhost
+  connection: local
+
+  vars:
+    site: https://rhvm-primary.example.com/ovirt-engine/api
+    username: admin@internal
+    password: "{{ dr_sites_primary_password }}"
+    ca: /root/DR/primary_ca.pem
+    var_file: disaster_recovery_vars.yml
+
+  vars_files:
+    - passwords.yml
+
+  roles:
+    - oVirt.disaster-recovery
